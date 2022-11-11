@@ -1,9 +1,9 @@
 #!/bin/bash
 
-model_dir=/home/mrios/workspace/en-ro_medcorpora/EMEA/models/mbart_finetuned_bleu_emea # fix if you moved the checkpoint
+model_dir=/mnt/disks/workspace1/en-ro_medcorpora/EMEA/models/mbartwmt_finetuned_bleu_emea3 # fix if you moved the checkpoint
 langs=ar_AR,cs_CZ,de_DE,en_XX,es_XX,et_EE,fi_FI,fr_XX,gu_IN,hi_IN,it_IT,ja_XX,kk_KZ,ko_KR,lt_LT,lv_LV,my_MM,ne_NP,nl_XX,ro_RO,ru_RU,si_LK,tr_TR,vi_VN,zh_CN
-DATA=/home/mrios/workspace/en-ro_medcorpora/en-ro_abstracts_clean
-DICT=/home/mrios/workspace/mbart.cc25.v2
+DATA=/mnt/disks/workspace1/en-ro_medcorpora/en-ro_abstracts_clean
+DICT=/mnt/disks/workspace1/MBART_finetuned_enro/
 
 spm_encode --model=$DICT/sentence.bpe.model < $DATA/en-ro.abstracts.en > $DATA/en-ro.abstracts.mbartft.spm.en_XX
 spm_encode --model=$DICT/sentence.bpe.model < $DATA/en-ro.abstracts.ro > $DATA/en-ro.abstracts.mbartft.spm.ro_RO
@@ -26,11 +26,11 @@ CUDA_VISIBLE_DEVICES=0 fairseq-generate  $DATA/abs.mbartft.spm.en-ro\
   --gen-subset test \
   -t ro_RO -s en_XX \
   --bpe 'sentencepiece' --sentencepiece-model $DICT/sentence.bpe.model \
-  --batch-size 32 --langs $langs > $DATA/en-ro.test.mbartft.bleu.sys
+  --batch-size 32 --langs $langs > $DATA/en-ro.test.mbartft3.bleu.sys
 
 echo 'sort sentences'
-grep ^S $DATA/en-ro.test.mbartft.bleu.sys | LC_ALL=C sort -V | cut -f2- | sed 's/\[en_XX\]//g' > $DATA/en-ro.test.mbartft.bleu.sys.src
-grep ^T $DATA/en-ro.test.mbartft.bleu.sys | LC_ALL=C sort -V | cut -f2- > $DATA/en-ro.test.mbartft.bleu.sys.ref
-grep ^H $DATA/en-ro.test.mbartft.bleu.sys | LC_ALL=C sort -V | cut -f3- > $DATA/en-ro.test.mbartft.bleu.sys.piece.hyp
+grep ^S $DATA/en-ro.test.mbartft3.bleu.sys | LC_ALL=C sort -V | cut -f2- | sed 's/\[en_XX\]//g' > $DATA/en-ro.test.mbartft3.bleu.sys.src
+grep ^T $DATA/en-ro.test.mbartft3.bleu.sys | LC_ALL=C sort -V | cut -f2- > $DATA/en-ro.test.mbartft3.bleu.sys.ref
+grep ^H $DATA/en-ro.test.mbartft3.bleu.sys | LC_ALL=C sort -V | cut -f3- > $DATA/en-ro.test.mbartft3.bleu.sys.piece.hyp
 
-spm_decode --model=$DICT/sentence.bpe.model --input_format=piece < $DATA/en-ro.test.mbartft.bleu.sys.piece.hyp > $DATA/en-ro.test.mbartft.bleu.sys.hyp
+spm_decode --model=$DICT/sentence.bpe.model --input_format=piece < $DATA/en-ro.test.mbartft3.bleu.sys.piece.hyp > $DATA/en-ro.test.mbartft3.bleu.sys.hyp

@@ -2,10 +2,10 @@
 
 #SPM=spm_encode
 #MODEL=/home/mrios/workspace/MBART_finetuned_enro/sentence.bpe.model
-DATA=data
-OUTPUT=models/mbartwmt_finetuned_bleu_emea
+DATA=/mnt/disks/workspace1/en-ro_medcorpora/EMEA/data
+OUTPUT=/mnt/disks/workspace1/en-ro_medcorpora/EMEA/models/mbartwmt_finetuned_bleu_emea_2gpus
 
-PRETRAIN=/home/mrios/workspace/MBART_finetuned_enro/model.pt # fix if you moved the downloaded checkpoint
+PRETRAIN=/mnt/disks/workspace1/MBART_finetuned_enro/model.pt # fix if you moved the downloaded checkpoint
 langs=ar_AR,cs_CZ,de_DE,en_XX,es_XX,et_EE,fi_FI,fr_XX,gu_IN,hi_IN,it_IT,ja_XX,kk_KZ,ko_KR,lt_LT,lv_LV,my_MM,ne_NP,nl_XX,ro_RO,ru_RU,si_LK,tr_TR,vi_VN,zh_CN
 
 fairseq-train $DATA/emea.mbart.spm.en-ro \
@@ -30,5 +30,5 @@ fairseq-train $DATA/emea.mbart.spm.en-ro \
   --eval-bleu-remove-bpe sentencepiece \
   --eval-bleu-print-samples \
   --best-checkpoint-metric bleu --maximize-best-checkpoint-metric \
-  --memory-efficient-fp16
+  --memory-efficient-fp16 
   
