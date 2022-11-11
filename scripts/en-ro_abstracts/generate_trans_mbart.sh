@@ -1,8 +1,10 @@
 #!/bin/bash
 
+#original checkpoint https://github.com/facebookresearch/fairseq/tree/main/examples/mbart 
 model_dir=/home/mrios/workspace/MBART_finetuned_enro # fix if you moved the checkpoint
 langs=ar_AR,cs_CZ,de_DE,en_XX,es_XX,et_EE,fi_FI,fr_XX,gu_IN,hi_IN,it_IT,ja_XX,kk_KZ,ko_KR,lt_LT,lv_LV,my_MM,ne_NP,nl_XX,ro_RO,ru_RU,si_LK,tr_TR,vi_VN,zh_CN
-DATA=/home/mrios/workspace/en-ro_medcorpora/en-ro_abstracts_clean
+DATA=en-ro_abstracts/medline #all the segments for the abstracts are in the medline directory
+#dictionary form https://github.com/facebookresearch/fairseq/tree/main/examples/mbart
 DICT=/home/mrios/workspace/MBART_finetuned_enro/dict.txt
 
 spm_encode --model=$model_dir/sentence.bpe.model < $DATA/en-ro.abstracts.en > $DATA/en-ro.abstracts.mbart.spm.en_XX

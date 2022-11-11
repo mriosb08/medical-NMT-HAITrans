@@ -6,6 +6,9 @@
 DATA=data
 CLEAN=/home/mrios/workspace/mosesdecoder/scripts/training/clean-corpus-n.perl
 
+
+
+
 #train BPE with sentence piece
 echo 'train sentence piece'
 spm_train \

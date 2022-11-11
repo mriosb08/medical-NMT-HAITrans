@@ -1,6 +1,8 @@
 #!/bin/bash
 
 SPM=spm_encode
+#path to bpe model of https://github.com/facebookresearch/fairseq/tree/main/examples/mbart
+#bpe model in https://dl.fbaipublicfiles.com/fairseq/models/mbart/mbart.cc25.ft.enro.tar.gz
 MODEL=/mnt/disks/workspace1/MBART_finetuned_enro/sentence.bpe.model
 DATA=/mnt/disks/workspace1/en-ro_medcorpora/EMEA/data
 CLEAN=/mnt/disks/workspace1/mosesdecoder/scripts/training/clean-corpus-n.perl
