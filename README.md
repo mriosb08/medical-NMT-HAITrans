@@ -4,6 +4,10 @@ Scripts for the reproducing the results of the paper:
 
 Impact of Domain-Adapted Multilingual Neural Machine Translation in the Medical Domain
 
+To be presented at:
+
+[AsLing‘s 44th Translating and the Computer conference — TC44](https://asling.org/tc44/)
+
 # Requirements
 
 - Python 3.8
