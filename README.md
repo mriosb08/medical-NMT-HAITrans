@@ -1,6 +1,13 @@
 # Impact of Domain-Adapted Multilingual Neural Machine Translation in the Medical Domain
 
-Scripts for the reproducing the results of the paper: 
+Scripts for the reproducing the results of the papers: 
+
+Quality Analysis of Multilingual Neural Machine Translation Systems and Reference Test Translations for the English-Romanian language pair in the Medical Domain
+
+Accepted at:
+
+[EAMT 2023](https://events.tuni.fi/eamt23/)
+
 
 Impact of Domain-Adapted Multilingual Neural Machine Translation in the Medical Domain
 
@@ -110,6 +117,11 @@ sacrebleu en-ro.abstracts.ro -l en-ro -i en-ro.test.mbart.sys.hyp -m bleu chrf
 comet-score -s en-ro.abstracts.en -t en-ro.test.mbart.sys.hyp -r en-ro.abstracts.ro
 en-ro.test.mbart.sys.hyp	score: 0.5560
 ```
+
+
+6. Metric Correlation
+
+TBA
 
 # Citation
 
