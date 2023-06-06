@@ -36,6 +36,9 @@ MBart
 
 # Results
 
+Scripts in directory **scripts**
+Qualitivity export in directory **annotation**
+
 1. Prepare data (note: change paths of files)
 
 EMEA [EN-RO](https://elrc-share.eu/repository/browse/bilingual-corpus-made-out-of-pdf-documents-from-the-european-medicines-agency-emea-httpswwwemaeuropaeu-february-2020-en-ro/3e38f500862b11ea913100155d026706378f2850bc3a47cd908640d762ef1de7/) tmx to moses format:
@@ -111,6 +114,7 @@ sacrebleu en-ro.abstracts.ro -l en-ro -i en-ro.test.mbart.sys.hyp -m bleu chrf
 
 ```
 
+You can also use the notebook to compute automatic metrics in: en-ro_abstracts/mt_metrics_asling2022.ipynb
 
 
 ```
@@ -121,7 +125,17 @@ en-ro.test.mbart.sys.hyp	score: 0.5560
 
 6. Metric Correlation
 
-TBA
+- Extract annotaiton from qualitivity export file:
+
+```
+python extract_qualitymetrics_info.py annotation/2022-07-26_export.csv annotation/2022-07-26_export.extract.json
+```
+
+- Compute MQM scores :
+
+```
+python segment_mqm_qualitymetrics.py annotation/022-07-26_export.extractinfo.json 75 
+``` 
 
 # Citation
 
